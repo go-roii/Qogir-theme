@@ -2038,7 +2038,7 @@ menubar,
       background-color: $selected_bg_color;
       box-shadow: none;
       border-color: if($titlebar == 'light', $sec_selected_bg_color, $alt_selected_bg_color);
-      color: $selected_fg_color;
+      color: $selected_fg_color_2;
     }
 
     &:disabled {
@@ -2093,8 +2093,8 @@ menu,
 
     &:hover {
       transition: none;
-      color: $selected_fg_color;
-      background-color: $selected_bg_color;
+      color: $selected_fg_color_2;
+      background-color: $selected_bg_color_2;
     }
 
     &:disabled { color: $insensitive_fg_color; }
@@ -2740,7 +2740,7 @@ scale {
   slider {
     $_slider_border: if($variant=='light', rgba(darken($button_border, 35%), 0.15), rgba($button_border, 0.1));
 
-    background-color: $selected_fg_color;
+    background-color: $text_color;
     border: 1px solid $_slider_border;
     border-radius: 100%;
 
@@ -2760,7 +2760,7 @@ scale {
     }
 
     &:disabled {
-      background-color: darken($selected_fg_color, 10%);
+      background-color: darken($text_color, 10%);
       border-color: darken($_slider_border, 5%);
     }
 
@@ -3965,12 +3965,12 @@ headerbar, .titlebar {
 
 // catch all extend
 %selected_items {
-  background-color: $selected_bg_color;
+  background-color: $selected_bg_color_2;
   @extend %nobg_selected_items;
 }
 
 %nobg_selected_items {
-  color: $selected_fg_color;
+  color: $selected_fg_color_2;
 
   &:disabled { color: mix($selected_fg_color, $selected_bg_color, 50%); }
 }

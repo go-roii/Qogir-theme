@@ -3,10 +3,10 @@
 
 @import 'tweaks-temp';
 
-$base_color: if($variant =='light', #ffffff, #282A33);
-$text_color: if($variant == 'light', #4a4c59, #e0e5eb);
-$bg_color: if($variant =='light', #fafbfc, #32343D);
-$fg_color: if($variant =='light', #464853, #e6ebef);
+$base_color: if($variant =='light', #ffffff, #1e1e2e);
+$text_color: if($variant == 'light', #4a4c59, #cdd6f4);
+$bg_color: if($variant =='light', #fafbfc, #181825);
+$fg_color: if($variant =='light', #464853, #bac2de);
 
 $alt_base_color: if($variant == 'light', darken($base_color, 5%), lighten($base_color, 5%));
 $sec_base_color: if($variant == 'light', darken($base_color, 10%), lighten($base_color, 10%));
@@ -15,8 +15,10 @@ $sec_bg_color: if($variant == 'light', darken($bg_color, 10%), lighten($bg_color
 $alt_fg_color: rgba($fg_color, 0.75);
 $sec_fg_color: rgba($fg_color, 0.6);
 
-$selected_fg_color: #ffffff;
-$selected_bg_color: #5294e2;
+$selected_fg_color: $base_color;
+$selected_bg_color: #f2cdcd;
+$selected_fg_color_2: $text_color;
+$selected_bg_color_2: transparentize(#f2cdcd, 0.64);
 
 @if $theme == 'manjaro' { $selected_bg_color: #2eb398; }
 @if $theme == 'ubuntu' { $selected_bg_color: #fb8441; }
@@ -36,7 +38,7 @@ $success_color: #6dcfa7;
 $destructive_color: #F04A50;
 $suggested_color: $selected_bg_color;
 $destructive_fg_color: white;
-$suggested_fg_color: white;
+$suggested_fg_color: $bg_color;
 $drop_target_color: #F08437;
 $progress_color: $selected_bg_color;
 
@@ -54,16 +56,16 @@ $insensitive_fg_color: if($variant == 'light', transparentize($fg_color, 0.45), 
 $insensitive_bg_color: lighten($bg_color, 2%);
 
 $header_bg: black;
-@if $trans == 'true' and $variant == 'light' { $header_bg: rgba(#ffffff, 0.95); }
-@if $trans == 'false' and $variant == 'light' { $header_bg: #ffffff; }
-@if $trans == 'true' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: rgba(#282A33, 0.97); }
-@if $trans == 'false' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: #282A33; }
+@if $trans == 'true' and $variant == 'light' { $header_bg: rgba(#cdd6f4, 0.95); }
+@if $trans == 'false' and $variant == 'light' { $header_bg: #cdd6f4; }
+@if $trans == 'true' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: rgba(#1e1e2e, 0.97); }
+@if $trans == 'false' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: #1e1e2e; }
 
 $header_bg_backdrop: if($titlebar == 'dark' or $variant == 'dark', lighten($header_bg, 1.5%), lighten($header_bg, 3%));
 
 $header_border: if($variant == 'light' and $titlebar == 'light', darken($header_bg, 10%), lighten($header_bg, 10%));
 
-$header_fg: if($titlebar == 'light', #4a4c59, #e0e5eb);
+$header_fg: if($titlebar == 'light', #4a4c59, #cdd6f4);
 $alt_header_fg: mix($header_fg, $header_bg, 75%);
 
 $dark_sidebar_bg: white;
@@ -80,8 +82,8 @@ $dark_sidebar_icon_fg: #F6F6FB;
 
 $dark_sidebar_border: if($variant == 'light', darken($dark_sidebar_bg, 10%), lighten($dark_sidebar_bg, 8%));
 
-$osd_fg_color: #D3DAE3;
-$osd_bg_color: #282A33;
+$osd_fg_color: #bac2de;
+$osd_bg_color: #313244;
 
 $osd_button_bg: lighten($osd_bg_color, 5%);
 $osd_button_border: lighten($osd_bg_color, 12%);
@@ -93,9 +95,9 @@ $osd_insensitive_bg_color: darken($osd_bg_color, 3%);
 $osd_insensitive_fg_color: mix($osd_fg_color, opacify($osd_bg_color, 1), 30%);
 $osd_borders_color: $osd_button_border;
 
-$menu_bg: if($variant=='light', $base_color, $bg_color);
+$menu_bg: if($variant=='light', $base_color, $base_color);
 
-$panel_bg: #21232b;
+$panel_bg: #1e1e2e;
 $panel_fg: $osd_fg_color;
 
 $dash_bg: $dark_sidebar_icon_bg;
