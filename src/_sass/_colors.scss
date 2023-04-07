@@ -4,9 +4,9 @@
 @import 'tweaks-temp';
 
 $base_color: if($variant =='light', #ffffff, #1e1e2e);
-$text_color: if($variant == 'light', #4a4c59, #cdd6f4);
-$bg_color: if($variant =='light', #fafbfc, #181825);
-$fg_color: if($variant =='light', #464853, #bac2de);
+$text_color: if($variant == 'light', #4a4c59, #bac2de);
+$bg_color: if($variant =='light', #fafbfc, #313244);
+$fg_color: if($variant =='light', #464853, #cdd6f4);
 
 $alt_base_color: if($variant == 'light', darken($base_color, 5%), lighten($base_color, 5%));
 $sec_base_color: if($variant == 'light', darken($base_color, 10%), lighten($base_color, 10%));
@@ -42,9 +42,9 @@ $suggested_fg_color: $bg_color;
 $drop_target_color: #F08437;
 $progress_color: $selected_bg_color;
 
-$borders_color: if($variant == 'light', rgba(black, 0.12), rgba(white, 0.12));
-$alt_borders_color: if($variant == 'light', rgba(black, 0.05), rgba(white, 0.05));
-$solid_borders_color: if($variant == 'light', mix(black, $base_color, 12%), mix(white, $base_color, 12%));
+$borders_color: if($variant == 'light', rgba(black, 0.12), rgba($fg_color, 0.12));
+$alt_borders_color: if($variant == 'light', rgba(black, 0.05), rgba($fg_color, 0.05));
+$solid_borders_color: if($variant == 'light', mix(black, $base_color, 12%), mix($fg_color, $base_color, 12%));
 $highlight: if($variant == 'light', rgba(white, 0.13), rgba(white, 0.10));
 $alt_highlight_color: rgba(white, 0.2);
 
