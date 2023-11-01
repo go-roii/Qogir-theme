@@ -141,7 +141,7 @@ window#whiskermenu-window {
 //
 
 window.thunar {
-  > grid > paned > .sidebar {
+  > grid > paned .sidebar {
     border-top: none;
 
     > treeview.view {
@@ -189,5 +189,12 @@ window.thunar {
         @extend %headerbar_pathbar_button;
       }
     }
+  }
+}
+
+// Fix for xfce theme setting window
+notebook.frame scrolledwindow.frame > viewport.frame {
+  treeview.view:hover:not(:selected):not(:disabled):not(.progressbar):not(.trough) {
+    background-color: mix($text_color, $base_color, 6%);
   }
 }
