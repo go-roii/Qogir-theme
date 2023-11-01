@@ -1,2 +1,4 @@
 
 src/_sass/_tweaks-temp.scss
+*
+!src/_sass/*
