@@ -331,7 +331,7 @@ filechooser {
                                       url("assets/selected-dot@2.png"));
         background-repeat: no-repeat;
         .sidebar-label { color: $alt_dark_sidebar_fg; }
-        // .sidebar-icon { color: inherit; }
+        .sidebar-icon { color: $base_color; }
 
         $_shadow_length: 38px;
         $_background_position: 42px;

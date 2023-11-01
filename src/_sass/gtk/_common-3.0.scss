@@ -900,25 +900,28 @@ headerbar .linked:not(.vertical):not(.path-bar):not(.nautilus-path-bar):not(.sta
 menuitem.button.flat,
 modelbutton.flat {
   transition: none;
-  min-height: 24px;
+  min-height: 28px;
   padding-left: 8px;
   padding-right: 8px;
-  outline-offset: -3px;
+  // outline-offset: -3px;
+  outline: none;
   border-radius: $bt_radius;
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
   @extend %undecorated_button;
 
   &:hover {
-    background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
-    border: 1px solid $borders_color;
+    // background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
+    color: $selected_fg_color;
+    background-color: $selected_bg_color;
+    // border: 1px solid $borders_color;
   }
 
-  &:active, &:selected {
-    border: 1px solid if($variant=='light', $sec_selected_bg_color, $alt_selected_bg_color);
-    &, arrow { @extend %selected_items; }
-  }
+  // &:active, &:selected {
+  //   border: 1px solid if($variant=='light', $sec_selected_bg_color, $alt_selected_bg_color);
+  //   &, arrow { @extend %selected_items; }
+  // }
 
-  &:checked { color: $fg_color; }
+  // &:checked { color: $fg_color; }
   &:disabled { color: $insensitive_fg_color; }
 
   // FIXME: temporary workaround
@@ -1234,6 +1237,7 @@ headerbar {
   }
 
   .title {
+    font-weight: bold;
     padding-left: $cont_padding * 2;
     padding-right: $cont_padding * 2;
   }
@@ -1285,9 +1289,11 @@ headerbar {
     &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
   }
 
+  // server-side decoration
   &:not(.csd).default-decoration {
-    min-height: 30px;
-    padding: 0 if($titlebutton == 'circle', 8px, 3px);
+    font-weight: bold;
+    min-height: 32px;
+    padding: 0 if($titlebutton == 'circle', 4px, 3px);
 
     > button.titlebutton {
       border: none;
@@ -1654,7 +1660,7 @@ headerbar {
 
   // Disconnect linked buttons
   .linked:not(.vertical):not(.path-bar):not(.nautilus-path-bar):not(.stack-switcher) {
-    button:not(:only-child) { margin-left: 1px; }
+    button:not(:only-child):not(:first-child) { margin-left: 1px; }
   }
 
   // Reset buttons
@@ -2055,7 +2061,7 @@ menu,
   // margin: 0; // See https://bugzilla.gnome.org/show_bug.cgi?id=591258
   border-radius: 0;
   transition: none;
-  background-color: $menu_bg;
+  background-color: $bg_color;
   border: 1px solid $borders_color; // adds borders in a non composited env
 
   @if $window == 'round' {
@@ -2067,24 +2073,32 @@ menu,
   .csd & {
     border: none;
     border-radius: $corner_radius;
+    box-shadow: inset 0 0 0 1px rgba($fg_color, 0.12);
+    padding: 8px 1px;
   }
 
   separator,
   .csd & separator {
-    margin: 4px 0;
-    background-color: $menu_bg;
+    margin: 3px 6px;
+    // background-color: rgba($fg_color, 0.12);
+    min-height: 0;
+    border-bottom: 1px solid rgba($fg_color, 0.12);
   }
 
   menuitem {
-    min-height: 16px;
-    min-width: 38px;
-    padding: 4px 8px;
+    min-height: 28px;
+    min-width: 175px;
+    padding: 0 8px 0 4px;
     text-shadow: none;
     transition: background-color 20ms ease-out;
     // -gtk-icon-style: symbolic;
 
     @if $window == 'round' {
       border-radius: $corner_radius - 3px;
+    }
+
+    @else {
+      border-radius: $corner_radius;
     }
 
     &:hover {
@@ -2161,9 +2175,31 @@ menu,
   }
 }
 
+// fix for label inside separator not having spacing
+menu separator label, 
+.csd menu separator label {
+  margin-bottom: 8px;
+}
+
 //
 // Popovers
 //
+
+popover > stack {
+  margin: -4px;
+}
+
+popover > stack > box > modelbutton.flat {
+	margin: 0 4px;
+
+  &:first-child {
+    margin-top: 4px;
+  }
+
+  &:last-child {
+    margin-bottom: 4px;
+  }
+}
 
 popover.background {
   padding: 0;
@@ -2176,7 +2212,7 @@ popover.background {
     box-shadow: 0 2px 8px 0 if($variant=='light', rgba(black, 0.1), rgba(black, 0.15));
   }
 
-  & separator { background-color: $menu_bg; }
+  & separator { background-color: rgba($fg_color, 0.12); }
   label.separator {
     @extend .dim-label;
 
@@ -2581,6 +2617,7 @@ switch {
     // too similar in luminosity to the selected background color, hence
     // we need special casing.
     menuitem #{$w}#{$s}:hover,
+    modelbutton.flat #{$w}#{$w}:hover
     .view #{$w}#{$s}:selected,
     treeview.#{$w}#{$s}:selected,
     row:selected #{$w}#{$s},
@@ -3087,7 +3124,11 @@ list {
 
   &.content { border: 1px solid $borders_color; }
 
-  row { padding: 2px; }
+  > box {
+    padding-left: 6px;
+  }
+
+  row { padding: 2px 2px 2px 6px; }
 
   &.content:not(.conversation-listbox) {
     @extend %circular_list;
@@ -3341,6 +3382,8 @@ messagedialog.background:not(.csd) {
 }
 
 dialog > .dialog-vbox.view { background: none; }
+
+dialog > .dialog-vbox > .dialog-action-box.horizontal { margin: 0 5px; }
 
 //
 // Sidebar
@@ -3850,7 +3893,7 @@ decoration {
   }
 
   .csd.popup & {
-    border-radius: $corner_radius;
+    border-radius: $material_radius;
     box-shadow: 0 3px 6px if($variant == 'light', rgba(black, 0.12), rgba(black, 0.1)), 0 0 0 1px $borders_color;
   }
 
@@ -3924,6 +3967,18 @@ decoration {
     }
   }
 
+  @if $titlebutton == 'circle' {
+    > box.horizontal {
+      &.left {
+        margin-right: 4x;
+      }
+  
+      &.right {
+        margin-left: 4x;
+      }
+    }
+  }
+
   button.titlebutton { // csd titlebuttons
     padding: 0;
     min-width: $medium_size;
@@ -3935,7 +3990,7 @@ decoration {
       min-height: if($titlebutton == 'circle', 24px, $large_size);
       border: none;
       border-radius: if($titlebutton == 'circle', $circular_radius, 0);
-      margin: if($titlebutton == 'circle', 0 3px, 0 -3px);
+      margin: if($titlebutton == 'circle', 0 2px, 0 -3px);
     }
 
     &.maximize, &.minimize {
@@ -3965,6 +4020,16 @@ decoration {
 
 headerbar, .titlebar {
   @extend %csd_titlebutton;
+}
+
+// single close button on low width idk
+headerbar stack:not(:first-child) {
+  // margin-right: 4px;
+
+  button.titlebutton {
+    min-width: 20px;
+    min-height: 20px;
+  }
 }
 
 // catch all extend

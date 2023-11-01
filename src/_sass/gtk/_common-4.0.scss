@@ -1485,11 +1485,16 @@ headerbar {
     padding: 2px;
   }
 
+  // server-side decoration
   &.default-decoration {
-    min-height: 30px;
-    padding: 0 if($titlebutton == 'circle', 8px, 3px);
+    font-weight: bold;
+    min-height: 32px;
+    padding: 0 if($titlebutton == 'circle', 4px, 3px);
 
     windowcontrols {
+      // for flatpak window controls (not 100% sure) to make window button spacing consistent to native gtk4 apps
+      border-spacing: 3px;
+
       menubutton button {
         min-height: 20px;
         min-width: 20px;
@@ -2125,7 +2130,7 @@ popover.menu {
 
   &.background separator {
     margin: 3px 0;
-    background-color: $menu_bg;
+    background-color: rgba($fg_color, 0.12);
   }
 
   box.inline-buttons {
@@ -4431,43 +4436,56 @@ window {
     }
   }
 
-  windowcontrols > button { // csd titlebuttons
-    margin: 0;
-    padding: 0;
-    min-width: $medium_size;
-    min-height: $medium_size;
+  windowcontrols {
+    @if $titlebutton == 'circle' {
+    //   margin: 0 3px;
+      &.start {
+        margin-right: 7px;
+      }
 
-    &.close, &.maximize, &.minimize { // csd windows control titlebuttons
+      &.end {
+        margin-left: 7px;
+      }
+    }
+
+    > button { // csd titlebuttons
+      margin: 0;
       padding: 0;
-      min-width: if($titlebutton == 'circle', 26px, $large_size);
-      min-height: if($titlebutton == 'circle', 26px, $large_size);
-      border: none;
-      border-radius: if($titlebutton == 'circle', $circular_radius, 0);
-      margin: if($titlebutton == 'circle', 0 3px, 0);
-
-      > image { background: none; }
-    }
-
-    &.maximize, &.minimize {
-      &:hover {
-        background-color: rgba($header_fg, 0.1);
+      min-width: $medium_size;
+      min-height: $medium_size;
+  
+      &.close, &.maximize, &.minimize { // csd windows control titlebuttons
+        padding: 0;
+        min-width: if($titlebutton == 'circle', 24px, $large_size);
+        min-height: if($titlebutton == 'circle', 24px, $large_size);
+        border: none;
+        border-radius: if($titlebutton == 'circle', $circular_radius, 0);
+        margin: if($titlebutton == 'circle', 0 3px, 0);
+  
+        > image { background: none; }
       }
-
-      &:active {
-        background-color: rgba($header_fg, 0.2);
-        color: $header_fg;
+  
+      &.maximize, &.minimize {
+        &:hover {
+          background-color: rgba($header_fg, 0.1);
+        }
+  
+        &:active {
+          background-color: rgba($header_fg, 0.2);
+          color: $header_fg;
+        }
       }
-    }
-
-    &.close {
-      &:hover {
-        background-color: $wm_button_close_hover_bg;
-        color: white;
-      }
-
-      &:active {
-        background-color: $wm_button_close_active_bg;
-        color: white;
+  
+      &.close {
+        &:hover {
+          background-color: $wm_button_close_hover_bg;
+          color: white;
+        }
+  
+        &:active {
+          background-color: $wm_button_close_active_bg;
+          color: white;
+        }
       }
     }
   }

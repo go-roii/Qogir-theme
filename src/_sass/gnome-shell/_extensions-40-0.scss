@@ -7,6 +7,23 @@
 #dashtodockContainer {
   background: transparent;
 
+  > * > * > * > * > * {
+    &:first-child {
+      padding: 8px 0 6px 8px;
+    }
+
+    &:last-child {
+      padding-right: 6px;
+    }
+  }
+  
+  #dashtodockDashContainer {
+    background: #333c43;
+    border-radius: 7px 7px 0 0;
+    border: 1px solid #454C4F;
+    border-bottom: none;
+  }
+
   .dash-item-container { // actual parent container
     background: transparent;
 

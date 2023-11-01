@@ -64,7 +64,7 @@
     }
 
     /* FIXME: this is to keep the label in sync with the entry */
-    & .folder-name-label { padding: 5px 7px; color: $selected_fg_color; }
+    & .folder-name-label { padding: 5px 7px; color: $fg_color; }
 
     & .edit-folder-button {
       @include button(osd);

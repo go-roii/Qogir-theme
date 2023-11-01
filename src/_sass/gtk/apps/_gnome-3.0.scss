@@ -1414,6 +1414,16 @@ window.solid-csd > box.vertical > box.vertical {
   }
 }
 
+// idk weird tweak for rhythmbox toolbar with buttons uneven spacing
+window.background > box > .sidebar-paned > paned > box > notebook > stack > box > box {
+  > grid > grid > grid,
+  > box > grid > grid > grid,
+  > notebook > stack > grid > grid > grid {
+    padding: 3px;
+    margin: -1px -6px -6px;
+  }
+}
+
 // hard-coded spacing depends on non-scalable unit,
 // seems cover-art widget is the most biggest thing?
 window.background > box.vertical > toolbar.primary-toolbar {

@@ -16,7 +16,7 @@ $window_clone_border_size: 3px;
   spacing: $window_picker_spacing;
 
   // Padding for container around window thumbnails
-  padding: $window_picker_padding;
+  // padding: $window_picker_padding;
 
   &.external-monitor { padding: $window_picker_padding; }
 }

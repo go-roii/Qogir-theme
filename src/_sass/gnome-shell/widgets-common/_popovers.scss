@@ -34,8 +34,8 @@
 }
 
 .popup-menu-content {
-  padding: 6px 0;
-  background-color: $base_color !important;
+  padding: 6px;
+  background-color: $bg_color !important;
   border-radius: $material_radius;
   margin: 2px 7px 12px;
   box-shadow: 0 3px 5px rgba(black, 0.15);
@@ -44,10 +44,11 @@
 
 // menu items
 .popup-menu-item {
-  spacing: 6px;
-  padding: 6px;
+  spacing: 0;
+  min-width: 150px;
+  padding-right: 0;
   color: $alt_fg_color !important;
-  border-radius: 0 !important;
+  border-radius: $corner_radius !important;
   border: none !important;
 
   &:checked {
@@ -112,7 +113,7 @@
     height: 1px !important;
     margin: 0 !important;
     padding: 0 !important;
-    background-color: transparent;
+    background-color: rgba($fg_color, 0.12);
 
     .popup-sub-menu & { //submenu separators
       margin: 0 !important;

@@ -1,6 +1,6 @@
 
 #overviewGroup {
-  background-color: darken($osd_bg_color, 5%);
+  background-color: $panel_bg;
 
   @if $background == 'image' {
     background-image: url("assets/background.jpg");
