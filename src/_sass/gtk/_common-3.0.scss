@@ -2103,8 +2103,8 @@ menu,
 
     &:hover {
       transition: none;
-      color: $selected_fg_color_2;
-      background-color: $selected_bg_color_2;
+      color: $selected_fg_color;
+      background-color: $selected_bg_color;
     }
 
     &:disabled { color: $insensitive_fg_color; }
