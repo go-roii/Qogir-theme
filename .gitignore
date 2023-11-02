@@ -1,4 +1,8 @@
-
-src/_sass/_tweaks-temp.scss
 *
-!src/_sass/*
+# src/_sass/_tweaks-temp.scss
+!/src
+!/src/_sass/**
+!/src/gtk
+!/src/gtk/assets
+!/src/gtk/assets/assets.svg
+!/src/gtk/assets/assets-common.svg
