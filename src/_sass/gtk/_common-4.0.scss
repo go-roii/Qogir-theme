@@ -1492,9 +1492,6 @@ headerbar {
     padding: 0 if($titlebutton == 'circle', 4px, 3px);
 
     windowcontrols {
-      // for flatpak window controls (not 100% sure) to make window button spacing consistent to native gtk4 apps
-      border-spacing: 3px;
-
       menubutton button {
         min-height: 20px;
         min-width: 20px;
@@ -1502,6 +1499,11 @@ headerbar {
         padding: 4px;
       }
     }
+  }
+
+  windowcontrols {
+    // for flatpak window controls (not 100% sure) to make window button spacing consistent to native gtk4 apps
+    border-spacing: 3px;
   }
 
   &.default-decoration
