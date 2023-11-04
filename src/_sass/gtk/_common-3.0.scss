@@ -1293,7 +1293,7 @@ headerbar {
   &:not(.csd).default-decoration {
     font-weight: bold;
     min-height: 32px;
-    padding: 0 if($titlebutton == 'circle', 4px, 3px);
+    padding: 0 if($titlebutton == 'circle', 6px, 3px);
 
     > button.titlebutton {
       border: none;
