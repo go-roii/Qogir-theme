@@ -426,6 +426,11 @@ button {
       }
     }
 
+    &.text-button > label,
+    &.text-button.image-button > label {
+      font-weight: bold;
+    }
+
     &.popup { padding-right: 8px; padding-left: 8px; }
   }
 
