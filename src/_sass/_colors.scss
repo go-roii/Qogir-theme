@@ -3,10 +3,10 @@
 
 @import 'tweaks-temp';
 
-$base_color: if($variant =='light', #ffffff, #293136);
-$text_color: if($variant == 'light', #4a4c59, #B3A78E);
-$bg_color: if($variant =='light', #fafbfc, #333c43);
-$fg_color: if($variant =='light', #464853, #d3c6aa);
+$base_color: if($variant =='light', #f2efdf, #293136);
+$text_color: if($variant == 'light', #5c6a72, #B3A78E);
+$bg_color: if($variant =='light', #fffbef, #333c43);
+$fg_color: if($variant =='light', #708089, #d3c6aa);
 
 $alt_base_color: if($variant == 'light', darken($base_color, 5%), lighten($base_color, 5%));
 $sec_base_color: if($variant == 'light', darken($base_color, 10%), lighten($base_color, 10%));
@@ -16,9 +16,9 @@ $alt_fg_color: rgba($fg_color, 0.75);
 $sec_fg_color: rgba($fg_color, 0.6);
 
 $selected_fg_color: $base_color;
-$selected_bg_color: #a7c080;
+$selected_bg_color: #93b259;
 $selected_fg_color_2: $text_color;
-$selected_bg_color_2: transparentize(#a7c080, 0.64);
+$selected_bg_color_2: transparentize(#93b259, 0.64);
 
 @if $theme == 'manjaro' { $selected_bg_color: #2eb398; }
 @if $theme == 'ubuntu' { $selected_bg_color: #fb8441; }
@@ -30,16 +30,16 @@ $sec_selected_fg_color: rgba($selected_fg_color, 0.6);
 
 $selection_mode_bg: if($trans == 'true', rgba($selected_bg_color, 0.95), $selected_bg_color);
 $selection_mode_fg: $selected_fg_color;
-$warning_color: #e69875;
-$error_color: #e67e80;
+$warning_color: #f57d26;
+$error_color: #f85552;
 $warning_fg_color: white;
 $error_fg_color: white;
-$success_color: #83c092;
-$destructive_color: #e67e80;
+$success_color: #35a77c;
+$destructive_color: #f85552;
 $suggested_color: $selected_bg_color;
 $destructive_fg_color: white;
 $suggested_fg_color: $bg_color;
-$drop_target_color: #e69875;
+$drop_target_color: #f57d26;
 $progress_color: $selected_bg_color;
 
 $borders_color: if($variant == 'light', rgba(black, 0.12), rgba($fg_color, 0.12));
@@ -57,8 +57,8 @@ $insensitive_fg_color: if($variant == 'light', transparentize($fg_color, 0.45), 
 $insensitive_bg_color: lighten($bg_color, 2%);
 
 $header_bg: black;
-@if $trans == 'true' and $variant == 'light' { $header_bg: rgba(#cdd6f4, 0.95); }
-@if $trans == 'false' and $variant == 'light' { $header_bg: #cdd6f4; }
+@if $trans == 'true' and $variant == 'light' { $header_bg: rgba(#d3c6aa, 0.95); }
+@if $trans == 'false' and $variant == 'light' { $header_bg: #d3c6aa; }
 @if $trans == 'true' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: rgba($base_color, 0.97); }
 @if $trans == 'false' and ($variant == 'dark' or $titlebar == 'dark') { $header_bg: $base_color; }
 
@@ -66,12 +66,12 @@ $header_bg_backdrop: if($titlebar == 'dark' or $variant == 'dark', lighten($head
 
 $header_border: if($variant == 'light' and $titlebar == 'light', darken($header_bg, 10%), lighten($header_bg, 10%));
 
-$header_fg: if($titlebar == 'light', #4a4c59, $fg_color);
+$header_fg: $fg_color;
 $alt_header_fg: mix($header_fg, $header_bg, 75%);
 
 $dark_sidebar_bg: white;
-@if $trans == 'true' and $titlebar == 'light' { $dark_sidebar_bg: rgba(#f6f9fb, 0.95); }
-@if $trans == 'false' and $titlebar == 'light' { $dark_sidebar_bg: #f6f9fb; }
+@if $trans == 'true' and $titlebar == 'light' { $dark_sidebar_bg: rgba(#ede9d4, 0.95); }
+@if $trans == 'false' and $titlebar == 'light' { $dark_sidebar_bg: #ede9d4; }
 @if $trans == 'true' and $titlebar == 'dark' { $dark_sidebar_bg: rgba(#232a2e, 0.95); }
 @if $trans == 'false' and $titlebar == 'dark' { $dark_sidebar_bg: #232a2e; }
 
@@ -98,7 +98,7 @@ $osd_borders_color: $osd_button_border;
 
 $menu_bg: if($variant=='light', $base_color, $bg_color);
 
-$panel_bg: #232a2e;
+$panel_bg: #ede9d4;
 $panel_fg: $osd_fg_color;
 
 $dash_bg: $dark_sidebar_icon_bg;
@@ -121,9 +121,9 @@ $header_button_border: if($titlebar == 'dark' or $variant == 'dark', rgba(darken
 $wm_borders: if($variant == 'light', darken($base_color, 35%), darken($base_color, 10%));
 
 // Close
-$wm_button_close_bg: if($variant == 'light' and $titlebar == 'light', #f46067, #cc575d);
-$wm_button_close_hover_bg: if($variant == 'light' and $titlebar == 'light', #f68086, #e67e80);
-$wm_button_close_active_bg: if($variant == 'light' and $titlebar == 'light', #f13039, #e66868);
+$wm_button_close_bg: if($variant == 'light' and $titlebar == 'light', #e66868, #cc575d);
+$wm_button_close_hover_bg: if($variant == 'light' and $titlebar == 'light', #e67e80, #e67e80);
+$wm_button_close_active_bg: if($variant == 'light' and $titlebar == 'light', #f85552, #e66868);
 
 $wm_icon_close_bg: if($variant == 'light' and $titlebar == 'light',#F8F8F9 , #2f343f);
 
