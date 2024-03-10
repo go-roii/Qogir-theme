@@ -16,7 +16,6 @@
 @import 'widgets-common/calendar';
 @import 'widgets-common/message-list';
 @import 'widgets-common/ibus-popup';
-@import 'widgets-common/quick-settings';
 // Notifications
 @import 'widgets-common/notifications';
 @import 'widgets-common/hotplug';
@@ -27,7 +26,6 @@
 @import 'widgets-common/osd';
 @import 'widgets-common/switcher-popup';
 @import 'widgets-common/workspace-switcher';
-@import 'widgets-common/screenshot';
 // Panel
 @import 'widgets-common/panel';
 @import 'widgets-common/corner-ripple';
@@ -57,4 +55,6 @@
 @import 'widgets-40-0/window-picker';
 @import 'widgets-40-0/workspace-thumbnails';
 @import 'widgets-42-0/popovers';
+@import 'widgets-42-0/quick-settings';
 @import 'widgets-42-0/osd';
+@import 'widgets-42-0/screenshot';

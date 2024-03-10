@@ -1,6 +1,6 @@
 .quick-settings {
   padding: $cont_padding * 2 !important;
-  border-radius: $bt_radius + $cont_padding * 2 !important;
+  border-radius: $material_radius !important;
   margin-top: $cont_padding !important;
 
   .icon-button, .button {
@@ -31,7 +31,6 @@
   &:rtl > StBoxLayout { padding-right: $cont_padding * 2.5; }
 
   .quick-toggle-label { font-weight: bold; }
-  .quick-toggle-icon, .quick-toggle-arrow { icon-size: 16px; }
 }
 
 .quick-menu-toggle {
@@ -40,7 +39,7 @@
 
   .quick-toggle-arrow {
     background-color: rgba($fg_color, 0.06) !important;
-    padding: $cont_padding $cont_padding * 1.75;
+    padding: $cont_padding $cont_padding * 1;
 
     &:active, &:checked {
       background-color: rgba($fg_color, 0.12) !important;
@@ -87,6 +86,7 @@
   border-radius: $material_radius !important;
   padding: $cont_padding * 2 0 !important;
   margin: $cont_padding * 2 $cont_padding * 3 + 1px 0 !important;
+  border: if($variant == 'light', 0, 1px) solid $borders_color !important;
 
   .popup-menu-item {
     border-radius: 0 !important;

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ROOT_UID=0
 DEST_DIR=
@@ -28,7 +28,9 @@ SASSC_OPT="-M -t expanded"
 if [[ "$(command -v gnome-shell)" ]]; then
   gnome-shell --version
   SHELL_VERSION="$(gnome-shell --version | cut -d ' ' -f 3 | cut -d . -f -1)"
-  if [[ "${SHELL_VERSION:-}" -ge "42" ]]; then
+  if [[ "${SHELL_VERSION:-}" -ge "44" ]]; then
+    GS_VERSION="44-0"
+  elif [[ "${SHELL_VERSION:-}" -ge "42" ]]; then
     GS_VERSION="42-0"
   elif [[ "${SHELL_VERSION:-}" -ge "40" ]]; then
     GS_VERSION="40-0"
@@ -37,7 +39,7 @@ if [[ "$(command -v gnome-shell)" ]]; then
   fi
   else
     echo "'gnome-shell' not found, using styles for last gnome-shell version available."
-    GS_VERSION="42-0"
+    GS_VERSION="44-0"
 fi
 
 usage() {
@@ -102,7 +104,7 @@ install() {
   echo "[X-GNOME-Metatheme]"                                                      >> ${THEME_DIR}/index.theme
   echo "GtkTheme=${name}${theme}${color}"                                         >> ${THEME_DIR}/index.theme
   echo "MetacityTheme=${name}${theme}${color}"                                    >> ${THEME_DIR}/index.theme
-  echo "IconTheme=${name}${theme}${ELSE_DARK}"                                    >> ${THEME_DIR}/index.theme
+  echo "IconTheme=${name}${theme,,}${ELSE_DARK,,}"                                >> ${THEME_DIR}/index.theme
   echo "CursorTheme=Adwaita"                                                      >> ${THEME_DIR}/index.theme
   echo "ButtonLayout=menu:minimize,maximize,close"                                >> ${THEME_DIR}/index.theme
 
@@ -552,16 +554,16 @@ function has_command() {
 
 install_css_deps() {
   if [ ! "$(which sassc 2> /dev/null)" ]; then
-    echo "\n sassc needs to be installed to generate the css."
+    echo -e "\n sassc needs to be installed to generate the css."
 
     if has_command zypper; then
 
       read -p "[ trusted ] specify the root password : " -t 20 -s
       [[ -n "$REPLY" ]] && {
-        echo "\n running: sudo zypper in sassc "
+        echo -e "\n running: sudo zypper in sassc "
         sudo -S <<< $REPLY zypper in sassc
       }|| {
-        echo  "\n Operation canceled  Bye"
+        echo -e "\n Operation canceled  Bye"
         exit 1
       }
 
@@ -569,10 +571,10 @@ install_css_deps() {
 
       read -p "[ trusted ] specify the root password : " -t 20 -s
       [[ -n "$REPLY" ]] && {
-        echo "\n running: sudo apt install sassc "
-        sudo -S <<< $REPLY apt install sassc
+        echo -e "\n running: sudo apt install --assume-yes sassc "
+        sudo -S <<< $REPLY apt install --assume-yes sassc
       }|| {
-        echo  "\n Operation canceled  Bye"
+        echo -e "\n Operation canceled  Bye"
         exit 1
       }
 
@@ -580,10 +582,10 @@ install_css_deps() {
 
       read -p "[ trusted ] specify the root password : " -t 20 -s
       [[ -n "$REPLY" ]] && {
-        echo "\n running: sudo dnf install sassc "
+        echo -e "\n running: sudo dnf install sassc "
         sudo -S <<< $REPLY dnf install sassc
       }|| {
-        echo  "\n Operation canceled  Bye"
+        echo -e "\n Operation canceled  Bye"
         exit 1
       }
 
@@ -591,10 +593,10 @@ install_css_deps() {
 
       read -p "[ trusted ] specify the root password : " -t 20 -s
       [[ -n "$REPLY" ]] && {
-        echo "\n running: sudo yum install sassc "
+        echo -e "\n running: sudo yum install sassc "
         sudo -S <<< $REPLY yum install sassc
       }|| {
-        echo  "\n Operation canceled  Bye"
+        echo -e "\n Operation canceled  Bye"
         exit 1
       }
 
@@ -602,10 +604,10 @@ install_css_deps() {
 
       read -p "[ trusted ] specify the root password : " -t 20 -s
       [[ -n "$REPLY" ]] && {
-        echo "\n running: sudo pacman -S --noconfirm sassc "
+        echo -e "\n running: sudo pacman -S --noconfirm sassc "
         sudo -S <<< $REPLY pacman -S --noconfirm sassc
       }|| {
-        echo  "\n Operation canceled  Bye"
+        echo -e "\n Operation canceled  Bye"
         exit 1
       }
 
@@ -722,9 +724,9 @@ uninstall_theme() {
 if [[ "${gdm:-}" != 'true' && "${remove:-}" != 'true' ]]; then
   install_theme
 
-   if [[ "$libadwaita" == 'true' ]]; then
-     uninstall_link && link_theme
-   fi
+  if [[ "$libadwaita" == 'true' ]]; then
+    uninstall_link && link_theme
+  fi
 fi
 
 if [[ "${gdm:-}" != 'true' && "${remove:-}" == 'true' ]]; then
